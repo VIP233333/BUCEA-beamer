@@ -18,6 +18,3 @@
 - 扫描公式神器 https://mathpix.com/
 - 文献 bib 整理神器 https://dblp.uni-trier.de/
 - Latex 画图画表常用命令 https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Tip
-
-# Overleaf Template
-https://www.overleaf.com/latex/templates/pku-beamer-theme/zdnpwpfnkzcc
