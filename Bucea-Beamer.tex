@@ -1,0 +1,560 @@
+%%=======================================================================
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = XeLaTeX
+%%=======================================================================
+% 模板名称：Bucea-Beamer
+% 模板版本：V1.0.0
+% 模板作者：Clark（Peng Chen）
+% 联系作者：c2003p1005@163.com
+% 模板适用：北京建筑大学风格 Beamer 模板，主要用于论文答辩或者成果汇报
+% 模板编译：手动编译方法参看 README.md
+%           编译说明文档先编译样式文件 BUCEA.sty
+% 更新时间：2025/05/25
+%%=======================================================================
+
+% 设置文档类别为 <beamer>
+% \documentclass[aspectratio=169]{beamer} % 设置长宽比为 16:9
+\documentclass{beamer}
+\usepackage{ctex, hyperref}
+\usepackage[T1]{fontenc}
+
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra,braket}
+\usepackage{graphicx,pstricks,listings,stackengine,tikz,shadow}
+\usepackage{circuitikz}
+\usetikzlibrary{quantikz}  % 量子电路宏包
+\usepackage[backend = bibtex, style = numeric]{biblatex}
+\addbibresource{paper.bib}
+
+\setmainfont{Times New Roman}
+
+\author{作者}
+\title{PPT标题}
+\subtitle{PPT子标题}
+\institute{北京建筑大学智能科学与技术学院}
+\date{2025 年 5 月 25 日}
+\usepackage{BUCEA}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.45}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+
+\begin{document}
+
+\kaishu
+
+\begin{frame}
+    \titlepage
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.2\linewidth]{pic/bucea_logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+
+\section{研究背景}
+
+\subsection{优势}
+
+\begin{frame}{Why Beamer}
+    \begin{itemize}
+        \item \LaTeX 广泛用于学术界，期刊会议论文模板
+    \end{itemize}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c}
+            Microsoft\textsuperscript{\textregistered}  Word & \LaTeX \\
+            \hline
+            文字处理工具 & 专业排版软件 \\
+            容易上手，简单直观 & 容易上手 \\
+            所见即所得 & 所见即所想，所想即所得 \\
+            高级功能不易掌握 & 进阶难，但一般用不到 \\
+            处理长文档需要丰富经验 & 和短文档处理基本无异 \\
+            花费大量时间调格式 & 无需担心格式，专心作者内容 \\
+            公式排版差强人意 & 尤其擅长公式排版 \\
+            二进制格式，兼容性差 & 文本文件，易读、稳定 \\
+            付费商业许可 & 自由免费使用 \\
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{PPT VS Beamer}
+    \begin{itemize}
+        \item Beamer适合学术类演示文稿的制作，它在生成和展示复杂表格和数学公式等方面，优势非常突出。
+    \end{itemize}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c}
+            Microsoft\textsuperscript{\textregistered}  Powerpoint & Beamer \\
+            \hline
+            演示文稿工具 & 演示文稿包 \\
+            容易上手，简单直观 & 上手有一定门槛，模版修改不方便 \\
+            所见即所得 & 所见即所想，所想即所得 \\
+            高级功能不易掌握 & 进阶难，但一般用不到 \\
+            花费大量时间调格式 & 无需担心格式，专心作者内容 \\
+            公式排版差强人意 & 尤其擅长公式排版 \\
+            付费商业许可 & 自由免费使用 \\
+            手动整理参考文献 & 自动插入参考文献 \\
+            容易花很多时间做花哨的动画 & 专于内容，简洁明了 \\
+            不同平台显示不一致 & 易于跨平台迁移 \\
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\subsection{研究现状}
+
+\begin{frame}{张量网络（TNs）的优势}
+    \begin{itemize}[<+-| alert@+>] % 当然，除了alert，手动在里面插 \pause 也行
+        \item 高效处理高维数据 \\
+        {\tiny 张量网络通过分解高维张量为低维张量的组合（如矩阵乘积态、树状张量网络等），显著降低了存储和计算的复杂度。}
+        \item 物理可解释性 \\
+        {\tiny 张量网络的结构通常与物理系统的局域相互作用和纠缠结构直接对应，便于解释物理现象（如量子纠缠、相变等）。}
+        \item 数学灵活性 \\
+        {\tiny 张量网络具备丰富的数学结构（如张量收缩、分解、重整化群等），可灵活适配不同问题。}
+        \item 计算效率与降维能力 \\
+        {\tiny 通过低秩近似和稀疏化，张量网络能在保留关键信息的同时压缩数据规模。}
+        \item 并行计算友好 \\
+        {\tiny 张量网络的核心操作（如张量收缩）天然适合并行计算架构（如GPU、TPU），加速大规模计算。}
+        \item 解决传统方法的局限性 \\
+        {\tiny 传统方法（如蒙特卡罗模拟）在处理强关联或高纠缠系统时可能失效，而张量网络能有效规避“维度灾难”。}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{张量网络（TNs）的优势}
+    \begin{itemize}
+        \item<1-> 跨学科通用性 \\
+        {\tiny 张量网络是连接物理学、数学、计算机科学的桥梁，其方法论可迁移到多领域。}
+        \item<2-> 噪声鲁棒性 \\
+        {\tiny 某些张量网络结构（如树状张量网络）对噪声和缺失数据具有鲁棒性，适合处理实际中的不完美数据。}
+        \item<3-> 可扩展性 \\
+        {\tiny 张量网络可通过逐层优化或动态调整结构（如密度矩阵重整化群，DMRG）逐步逼近复杂系统的真实解。}
+        \item<4-> 模型压缩与参数优化 \\
+        {\tiny 在深度学习中，张量网络可通过低秩分解减少模型参数量，同时保持性能。}
+    \end{itemize}
+\end{frame}
+
+\section{研究内容}
+
+\begin{frame}{公式也不是不可以}
+    \begin{exampleblock}{量子比特表示}
+        \begin{equation}
+            \ket{\psi}=\alpha\ket{0}+\beta\ket{1}, |\alpha|^2+|\beta|^2=1.
+        \end{equation}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{假如不要公式编号}
+    \begin{exampleblock}{公式不要编号也可以哦~}
+        \begin{equation*}
+            \begin{aligned}
+                \text{Hadamard门（H门）：​}H=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+                    1 & 1 \\
+                    1 & -1 \\
+                \end{array}\right).
+            \end{aligned}
+        \end{equation*}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{双列布局呢？}
+    \begin{columns}
+        % 左列（宽幅公式）
+        \begin{column}{0.7\textwidth}
+            \begin{equation}
+                H = \sum_{i=1}^n \sigma_x^{(i)} + \sum_{i<j} J_{ij} \sigma_z^{(i)} \sigma_z^{(j)}.
+            \end{equation}
+        \end{column}
+        % 右列（窄幅注释）
+        \begin{column}{0.3\textwidth}
+            \begin{block}{符号说明}
+                $\sigma_x$: Pauli$X$矩阵 \\
+                $\sigma_z$: Pauli$Z$矩阵 \\
+                $J_{ij}$: 耦合强度
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{\LaTeX{} 给大家看看“田”字型布局}
+    \begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[language=TeX]
+\begin{itemize}
+  \item A \item B
+  \item C
+  \begin{itemize}
+    \item C-1
+  \end{itemize}
+\end{itemize}
+\end{lstlisting}
+    \end{minipage}\hspace{1cm}
+    \begin{minipage}{0.3\linewidth}
+        \begin{itemize}
+            \item A
+            \item B
+            \item C
+            \begin{itemize}
+                \item C-1
+            \end{itemize}
+        \end{itemize}
+    \end{minipage}
+    \medskip
+    \pause
+    \begin{minipage}{0.5\linewidth}
+\begin{lstlisting}[language=TeX]
+\begin{enumerate}
+  \item 巨佬 \item 大佬
+  \item 萌新
+  \begin{itemize}
+    \item[n+e] 瑟瑟发抖
+  \end{itemize}
+\end{enumerate}
+\end{lstlisting}
+    \end{minipage}\hspace{1cm}
+    \begin{minipage}{0.3\linewidth}
+        \begin{enumerate}
+            \item 巨佬
+            \item 大佬
+            \item 萌新
+            \begin{itemize}
+                \item[n+e] 瑟瑟发抖
+            \end{itemize}
+        \end{enumerate}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{多行公式}
+    \begin{exampleblock}{量子纠缠的度量（von Neumann熵）}
+        \begin{definition}
+            \begin{equation}
+                S(\rho)=-\mathrm{Tr}(\rho\log_2(\rho)).
+            \end{equation}
+            $\rho$是量子态的密度矩阵。
+        \end{definition}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{多行公式}
+    \begin{exampleblock}{量子纠缠的度量（von Neumann熵）}
+        \begin{proof}
+            \tiny
+            （$1$）Bell态的密度矩阵：
+            \begin{equation}
+                \rho=\ket{\Phi^+}\bra{\Phi^+}=\frac{1}{2}(\ket{00}\bra{00}+\ket{00}\bra{11}+\ket{11}\bra{00}+\ket{11}\bra{11}).
+            \end{equation}
+            （$2$）对第一个子系统取偏迹：
+            \begin{equation}
+                \rho_A=\mathrm{Tr}(\rho)=\frac{1}{2}(\ket{0}\bra{0}+\ket{1}\bra{1})=\frac{I}{2}.
+            \end{equation}
+            （$3$）Bell态的密度矩阵：
+            \begin{equation}
+                \begin{aligned}
+                    S(\rho_A) &= -\mathrm{Tr}\left(\frac{I}{2}\log_2\frac{I}{2}\right) \\
+                    &= -\left(\frac{1}{2}\log_2\frac{1}{2}+\frac{1}{2}\log_2\frac{1}{2}\right) = 1.
+                \end{aligned}
+            \end{equation}
+            于是，最大纠缠态的熵为$1$（最大可能值），表明完全纠缠。
+        \end{proof}
+    \end{exampleblock}
+\end{frame}
+
+\section{核心概念}
+
+\subsection{子标题}
+
+\begin{frame}[fragile]{\LaTeX{} 常用命令}
+    \begin{exampleblock}{命令}
+        \centering
+        \footnotesize
+        \begin{tabular}{llll}
+            \cmd{chapter} & \cmd{section} & \cmd{subsection} & \cmd{paragraph} \\
+            章 & 节 & 小节 & 带题头段落 \\\hline
+            \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
+            居中对齐 & 强调 & 原样输出 & 超链接 \\\hline
+            \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
+            脚注 & 列表条目 & 标题 & 插入图片 \\\hline
+            \cmd{label} & \cmd{cite} & \cmd{ref} \\
+            标号 & 引用参考文献 & 引用图表、公式等\\\hline
+        \end{tabular}
+    \end{exampleblock}
+    \begin{exampleblock}{环境}
+        \centering
+        \footnotesize
+        \begin{tabular}{lll}
+            \env{table} & \env{figure} & \env{equation}\\
+            表格 & 图片 & 公式 \\\hline
+            \env{itemize} & \env{enumerate} & \env{description}\\
+            无编号列表 & 编号列表 & 描述 \\
+            \hline
+        \end{tabular}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{定理}
+    \begin{theorem}{量子不可克隆定理}
+        \begin{equation}
+            \label{copy}
+            \nexists \hat{U} \quad s.t. \quad \hat{U}\ket{\psi}\ket{0}=\ket{\psi}\ket{\psi}, for \ \forall\ket{\psi},
+        \end{equation}
+        公式（\ref{copy}）是量子算法（如Grover搜索、HHL线性方程求解）的理论基础。
+    \end{theorem}
+    \begin{proof}
+        略.
+    \end{proof}
+\end{frame}
+
+\begin{frame}{定义}
+    \begin{definition}
+        量子Fourier变换定义如下：
+        \[
+            \hat{U}_{\mathrm{QFT}}\ket{y}=\frac{1}{\sqrt{2^N}}\sum_{x=0}^{2^N-1}\mathrm{e}^{\mathrm{i}2\pi xy/2^N}\ket{x}.
+        \]
+    \end{definition}
+\end{frame}
+
+\section{成果展示}
+
+\subsection{进阶内容}
+
+\begin{frame}{关于使用TikZ作图}
+    $\blacktriangleright$这是Grover搜索算法的量子门电路图：
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-0.7,xscale=0.7]
+        %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+        %Straight Lines [id:da9148320742795613] 
+        \draw    (0,100) -- (50,100) ;
+        %Straight Lines [id:da10979351404015847] 
+        \draw    (0,150) -- (50,150) ;
+        %Straight Lines [id:da39962162843519333] 
+        \draw    (0,200) -- (50,200) ;
+        %Shape: Rectangle [id:dp9423444081203372] 
+        \draw   (50,80) -- (90,80) -- (90,120) -- (50,120) -- cycle ;
+        %Shape: Rectangle [id:dp4028174417183227] 
+        \draw   (50,130) -- (90,130) -- (90,170) -- (50,170) -- cycle ;
+        %Shape: Rectangle [id:dp950126277286567] 
+        \draw   (50,180) -- (90,180) -- (90,220) -- (50,220) -- cycle ;
+        %Straight Lines [id:da3405354138725293] 
+        \draw    (90,100) -- (110,100) ;
+        %Straight Lines [id:da5410573539553837] 
+        \draw    (90,150) -- (110,150) ;
+        %Straight Lines [id:da3996926676270742] 
+        \draw    (90,200) -- (110,200) ;
+        %Shape: Rectangle [id:dp807217223657062] 
+        \draw   (110,80) -- (210,80) -- (210,220) -- (110,220) -- cycle ;
+        %Shape: Rectangle [id:dp5651900624488302] 
+        \draw   (230,80) -- (270,80) -- (270,120) -- (230,120) -- cycle ;
+        %Shape: Rectangle [id:dp4509771040518725] 
+        \draw   (230,130) -- (270,130) -- (270,170) -- (230,170) -- cycle ;
+        %Shape: Rectangle [id:dp5101037478692568] 
+        \draw   (230,180) -- (270,180) -- (270,220) -- (230,220) -- cycle ;
+        %Straight Lines [id:da7611609935959097] 
+        \draw    (270,100) -- (290,100) ;
+        %Straight Lines [id:da13082937952175966] 
+        \draw    (270,150) -- (290,150) ;
+        %Straight Lines [id:da18484840400778701] 
+        \draw    (270,200) -- (290,200) ;
+        %Shape: Rectangle [id:dp8942478810051109] 
+        \draw   (290,80) -- (330,80) -- (330,120) -- (290,120) -- cycle ;
+        %Shape: Rectangle [id:dp2763056100314587] 
+        \draw   (290,130) -- (330,130) -- (330,170) -- (290,170) -- cycle ;
+        %Shape: Rectangle [id:dp9817549404733704] 
+        \draw   (290,180) -- (330,180) -- (330,220) -- (290,220) -- cycle ;
+        %Straight Lines [id:da6346000580138353] 
+        \draw    (330,100) -- (350,100) ;
+        %Straight Lines [id:da5398739367163725] 
+        \draw    (330,150) -- (350,150) ;
+        %Straight Lines [id:da8317216619246492] 
+        \draw    (330,200) -- (350,200) ;
+        %Straight Lines [id:da15990023975129575] 
+        \draw    (210,100) -- (230,100) ;
+        %Straight Lines [id:da11404419893166085] 
+        \draw    (210,150) -- (230,150) ;
+        %Straight Lines [id:da14957571942018588] 
+        \draw    (210,200) -- (230,200) ;
+        %Straight Lines [id:da46814221513557175] 
+        \draw    (490,100) -- (510,100) ;
+        %Straight Lines [id:da7574992857072682] 
+        \draw    (490,150) -- (510,150) ;
+        %Straight Lines [id:da22365731720232485] 
+        \draw    (490,200) -- (510,200) ;
+        %Shape: Rectangle [id:dp4147484984831298] 
+        \draw   (510,80) -- (550,80) -- (550,120) -- (510,120) -- cycle ;
+        %Shape: Rectangle [id:dp6210063461167156] 
+        \draw   (510,130) -- (550,130) -- (550,170) -- (510,170) -- cycle ;
+        %Shape: Rectangle [id:dp1733183676994745] 
+        \draw   (510,180) -- (550,180) -- (550,220) -- (510,220) -- cycle ;
+        %Straight Lines [id:da7268806736398217] 
+        \draw    (550,100) -- (600,100) ;
+        %Straight Lines [id:da04923601207108852] 
+        \draw    (550,150) -- (600,150) ;
+        %Straight Lines [id:da33124314353770246] 
+        \draw    (550,200) -- (600,200) ;
+        %Straight Lines [id:da05696137417188363] 
+        \draw    (430,100) -- (450,100) ;
+        %Straight Lines [id:da9262493053958062] 
+        \draw    (430,150) -- (450,150) ;
+        %Straight Lines [id:da3032962894922896] 
+        \draw    (430,200) -- (450,200) ;
+        %Shape: Rectangle [id:dp5606117468531685] 
+        \draw   (450,80) -- (490,80) -- (490,120) -- (450,120) -- cycle ;
+        %Shape: Rectangle [id:dp7365199917337634] 
+        \draw   (450,130) -- (490,130) -- (490,170) -- (450,170) -- cycle ;
+        %Shape: Rectangle [id:dp006528162694162787] 
+        \draw   (450,180) -- (490,180) -- (490,220) -- (450,220) -- cycle ;
+        %Shape: Rectangle [id:dp6687827297911194] 
+        \draw   (350,80) -- (430,80) -- (430,220) -- (350,220) -- cycle ;
+        % Text Node
+        \draw (61,92.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (61,142.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (61,192.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (241,92.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (241,142.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (241,192.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (521,92.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (521,142.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (521,192.4) node [anchor=north west][inner sep=0.75pt]    {$H$};
+        % Text Node
+        \draw (301,92.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (301,142.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (301,192.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (461,92.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (461,142.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (461,192.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+        % Text Node
+        \draw (370,132.4) node [anchor=north west][inner sep=0.75pt]    {$MCF$};
+        % Text Node
+        \draw (138,132.4) node [anchor=north west][inner sep=0.75pt]    {$U_{\tiny\text{黑箱}}$};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{图形与分栏}
+    % From thuthesis user guide.
+    \begin{minipage}[c]{0.3\linewidth}
+        \psset{unit=0.8cm}
+        \begin{pspicture}(-1.75,-3)(3.25,4)
+            \psline[linewidth=0.25pt](0,0)(0,4)
+            \rput[tl]{0}(0.2,2){$\vec e_z$}
+            \rput[tr]{0}(-0.9,1.4){$\vec e$}
+            \rput[tl]{0}(2.8,-1.1){$\vec C_{ptm{ext}}$}
+            \rput[br]{0}(-0.3,2.1){$\theta$}
+            \rput{25}(0,0){%
+            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,-3.2)(0.1,0)}
+            \rput{25}(0,0){%
+            \psellipse[fillstyle=solid,fillcolor=yellow,linewidth=3pt](0,0)(1.5,0.5)}
+            \rput{25}(0,0){%
+            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,0)(0.1,3.2)}
+            \rput{25}(0,0){\psline[linecolor=red,linewidth=1.5pt]{->}(0,0)(0.,2)}
+%           \psRotation{0}(0,3.5){$\dot\phi$}
+%           \psRotation{25}(-1.2,2.6){$\dot\psi$}
+            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(0,2)
+            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(3,-1)
+            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(2.85,-0.95)
+            \psarc{->}{2.1}{90}{112.5}
+            \rput[bl](.1,.01){C}
+        \end{pspicture}
+    \end{minipage}\hspace{1cm}
+    \begin{minipage}{0.5\linewidth}
+        \medskip
+        %\hspace{2cm}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[height=.5\textheight]{pic/bucea_logo.png}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{作图}
+    \begin{itemize}
+        \item 矢量图 eps, ps, pdf
+        \begin{itemize}
+            \item METAPOST, pstricks, pgf $\ldots$
+            \item Xfig, Dia, Visio, Inkscape $\ldots$
+            \item Matlab / Excel 等保存为 pdf
+        \end{itemize}
+        \item 标量图 png, jpg, tiff $\ldots$
+        \begin{itemize}
+            \item 提高清晰度，避免发虚
+            \item 应尽量避免使用
+        \end{itemize}
+    \end{itemize}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.2\linewidth]{pic/bucea_logo.png}
+        \caption{这个校徽就是矢量图}
+    \end{figure}
+\end{frame}
+
+\section{总结}
+
+\subsection{总结}
+
+\begin{frame}{总结}
+    $\blacktriangleright$量子机器学习（Quantum Machine Learning, QML）是量子计算与经典机器学习交叉的前沿领域，其优势主要体现在利用量子力学特性（如叠加、纠缠和干涉）解决特定复杂问题。：
+    \begin{itemize}
+        \small
+        \pause
+        \item<1-> 量子计算的理论加速潜力（量子线性代数加速、量子采样优势等）
+        \pause
+        \item<2-> 高维特征空间的自然嵌入（量子特征映射、量子支持向量机（QSVM）等）；
+        \pause
+        \item<3-> 量子并行性与数据编码效率（量子并行计算、数据压缩编码等）；
+        \pause
+        \item<4-> 量子纠缠与模型表达能力（纠缠增强的表示学习、量子神经网络（QNN）等）；
+        \pause
+        \item<5-> 量子-经典混合优化框架（变分量子算法（VQA）等）；
+        \pause
+        \item<6-> 量子数据处理的天然适配性（量子生成对抗网络（QGAN）等）；
+        \pause
+        \item<7-> 抗噪声与鲁棒性潜力（量子纠错与误差缓解等）；
+        \pause
+        \item<8-> 新型学习范式的探索（量子强化学习（QRL）、量子拓扑数据分析等）。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{参考文献}
+    \printbibliography[title = 参考文献]
+    % 如果参考文献太多的话，可以像下面这样调整字体：
+    % \tiny\bibliographystyle{alpha}
+    引用文献只需要\cite{shor1994algorithms}。
+\end{frame}
+
+\begin{frame}{结语}
+	\begin{center}
+    {\Huge\calligra Thanks!}
+  \end{center}
+\end{frame}
+
+\end{document}
