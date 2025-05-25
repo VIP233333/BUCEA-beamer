@@ -1,6 +1,7 @@
 # BUCEA-Beamer-Theme
  A Beamer Theme of BUCEA for academic report, thesis and talk.
-# Demo
+ PS: This is a slightly crude template.
+# Show
 <img src="Bucea-Beamer\Bucea-Beamer\img\show1.jpg" >
 <img src="Bucea-Beamer\Bucea-Beamer\img\show2.jpg" >
 <img src="Bucea-Beamer\Bucea-Beamer\img\show3.jpg" >
